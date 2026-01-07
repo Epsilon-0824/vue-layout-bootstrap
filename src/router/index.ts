@@ -7,23 +7,39 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      title: 'Home - Vue Layout Bootstrap'
+    }
   },
   {
     path: '/about',
     name: 'About',
-    component: About
+    component: About,
+    meta: {
+      title: 'About - Vue Layout Bootstrap'
+    }
   },
   {
     path: '/contact',
     name: 'Contact',
-    component: Contact
+    component: Contact,
+    meta: {
+      title: 'Contact - Vue Layout Bootstrap'
+    }
   },
 ]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, _, next) => {
+  if(typeof to.meta.title === 'string'){
+    document.title = to.meta.title
+  }
+  next()
 })
 
 export default router
